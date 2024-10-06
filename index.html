@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio</title>
+    <!-- Enlazar Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Cambiar el cursor a una mano cuando pasa sobre las imágenes */
+        .portfolio-image {
+            cursor: pointer;
+        }
+        /* Estilo para el banner */
+        #banner {
+            position: relative;
+            overflow: hidden;
+            color: white;
+            padding: 50px 0;
+            text-align: center;
+            transition: filter 0.5s;
+            cursor: pointer;
+        }
+        /* Imagen de fondo sin difuminado */
+        #banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('images/SANCTUARY X_1.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+        }
+        /* Mantener el texto y los botones sin difuminar */
+        #banner h1, #banner button {
+            position: relative;
+            z-index: 1;
+        }
+        /* Ocultar la sección de la galería al inicio */
+        #portfolio {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease, max-height 0.5s ease;
+            overflow: hidden;
+            max-height: 0; /* Inicialmente colapsado */
+        }
+        /* Añadir espacio a la sección de bienvenida */
+        #home {
+            background-color: #191919;
+            color: white;
+            padding: 20px 0;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Centrar el texto en la barra de navegación */
+        .navbar {
+            background-color: white;
+        }
+        .navbar .navbar-brand {
+            color: #191919;
+            margin-left: 30px;
+        }
+        .navbar-toggler {
+            margin-left: auto;
+        }
+        /* Estilos para la fuente Helvetica Neue Bold */
+        .font-bold {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            transform: scaleX(1.06);
+        }
+        /* Estilo para el subtítulo */
+        .subtitle {
+            font-size: 1rem;
+            text-transform: lowercase;
+            color: gray;
+        }
+        /* Estilo del modal para que solo muestre la imagen */
+        .modal-content {
+            border: none;
+            background: transparent;
+        }
+        .modal-body {
+            padding: 0;
+        }
+        #modalImage {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Barra de navegación -->
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+        <a class="navbar-brand font-bold" href="#">max gottlieb</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#about">Sobre Mí</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" href="#contact">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Sección de Bienvenida -->
+<section id="home" class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4 font-bold"> | portfolio | </h1>
+        </div>
+    </div>
+</section>
+
+<!-- Banner -->
+<section id="banner">
+    <h1 class="font-bold">Explora mi Galería</h1>
+    <p><button class="btn btn-light" id="toggleButton" onclick="toggleGallery()">Ver Más</button></p>
+</section>
+
+<!-- Galería de Imágenes -->
+<section id="portfolio" class="container mt-5">
+    <h2 class="text-center mb-2 font-bold">Photoshoot</h2>
+    <h4 class="text-center mb-4 subtitle">sanctuary</h4>
+    
+    <!-- Primera fila de imágenes -->
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <img src="images/SANCTUARY X_1.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 1" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY X_1.jpg')">
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <img src="images/SANCTUARY X_3.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 2" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY X_3.jpg')">
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <img src="images/SANCTUARY X_4.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 3" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY X_4.jpg')">
+        </div>
+    </div>
+    <!-- Segunda fila de imágenes -->
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <img src="images/SANCTUARY_2.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 4" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY_2.jpg')">
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <img src="images/SANCTUARY_6.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 5" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY_6.jpg')">
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <img src="images/SANCTUARY_8.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 6" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY_8.jpg')">
+        </div>
+    </div>
+    <!-- Tercera fila de dos imágenes -->
+    <div class="row">
+        <div class="col-lg-6 col-md-6 mb-4">
+            <img src="images/SANCTUARY_1.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 7" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY_1.jpg')">
+        </div>
+        <div class="col-lg-6 col-md-6 mb-4">
+            <img src="images/SANCTUARY_7.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 8" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/SANCTUARY_7.jpg')">
+        </div>
+    </div>
+    
+    <!-- Subtítulo adicional -->
+    <h4 class="text-center mb-4 subtitle">PS_@alan_manso.ur</h4>
+
+    <!-- Cuarta fila de cuatro imágenes -->
+    <div class="row mb-4">
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="images/DSC_1004.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 9" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1004.jpg')">
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="images/DSC_1001.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 10" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1001.jpg')">
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="images/DSC_0988.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 11" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_0988.jpg')">
+        </div>
+        <div class="col-lg-3 col-md-6 mb-4">
+            <img src="images/DSC_0976.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 12" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_0976.jpg')">
+        </div>
+    </div>
+    
+   <!-- Quinta fila de tres imágenes -->
+<div class="row mb-4">
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_0960.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 13" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_0960.jpg')">
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1044.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 14" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1044.jpg')">
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1038.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 15" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1038.jpg')">
+    </div>
+</div>
+
+<!-- Sexta fila de dos imágenes -->
+<div class="row mb-4">
+    <div class="col-lg-6 col-md-6 mb-4">
+        <img src="images/DSC_0967.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 16" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_0967.jpg')">
+    </div>
+    <div class="col-lg-6 col-md-6 mb-4">
+        <img src="images/DSC_0965.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 17" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_0965.jpg')">
+    </div>
+</div>
+    
+</section>
+
+<!-- Modal para mostrar imágenes -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="Imagen ampliada">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sección "Sobre Mí" -->
+<section id="about" class="container mt-5" style="padding-bottom: 100px;">
+    <h2 class="text-center mb-4 font-bold">Sobre Mí</h2>
+    <p>Estudiante de Diseño de Imagen y sonido.<br>
+    UBA - Facultad de Arquitectura, diseño y urbanismo ( FADU )<br>
+    Fotografía, Diseño y Edición de contenido Audiovisual.<br>
+    Argentina, Buenos Aires, GBA.</p>
+</section>
+
+<!-- Sección "Contacto" -->
+<section id="contact" class="container mt-5" style="padding-bottom: 40px;">
+    <h2 class="text-center mb-4 font-bold">Contacto</h2>
+    <form class="text-center">
+    <div class="row">
+        <div class="col-md-6 text-start">
+            <p>
+                <a href="https://www.instagram.com/mxs.dis?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
+                    Instagram : @mxs.dis
+                </a>
+            </p>
+        </div>
+        <div class="col-md-6 text-end">
+            <p>email :  maxigottlieb3@gmail.com</p>
+        </div>
+    </div>
+</section>
+
+<!-- Scripts de Bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+<script>
+    // Función para mostrar la imagen en el modal
+    function showImage(imageSrc) {
+        const modalImage = document.getElementById('modalImage');
+        modalImage.src = imageSrc;
+    }
+
+    // Función para alternar la galería
+    function toggleGallery() {
+        const portfolio = document.getElementById('portfolio');
+        const toggleButton = document.getElementById('toggleButton');
+        
+        const isVisible = portfolio.style.display === "block";
+        
+        if (isVisible) {
+            portfolio.style.maxHeight = "0"; // Colapsar
+            portfolio.style.opacity = 0;
+            setTimeout(() => {
+                portfolio.style.display = "none";
+                toggleButton.textContent = "Ver Más";
+            }, 500);
+        } else {
+            portfolio.style.display = "block"; // Mostrar
+            setTimeout(() => {
+                portfolio.style.maxHeight = portfolio.scrollHeight + "px"; // Expandir
+                portfolio.style.opacity = 1;
+                toggleButton.textContent = "Ver Menos";
+            }, 10);
+        }
+    }
+</script>
+</body>
+</html>
