@@ -7,11 +7,9 @@
     <!-- Enlazar Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* Cambiar el cursor a una mano cuando pasa sobre las imágenes */
         .portfolio-image {
             cursor: pointer;
         }
-        /* Estilo para el banner */
         #banner {
             position: relative;
             overflow: hidden;
@@ -21,7 +19,6 @@
             transition: filter 0.5s;
             cursor: pointer;
         }
-        /* Imagen de fondo sin difuminado */
         #banner::before {
             content: "";
             position: absolute;
@@ -34,20 +31,17 @@
             background-position: center;
             z-index: 0;
         }
-        /* Mantener el texto y los botones sin difuminar */
         #banner h1, #banner button {
             position: relative;
             z-index: 1;
         }
-        /* Ocultar la sección de la galería al inicio */
         #portfolio {
             display: none;
             opacity: 0;
             transition: opacity 0.5s ease, max-height 0.5s ease;
             overflow: hidden;
-            max-height: 0; /* Inicialmente colapsado */
+            max-height: 0;
         }
-        /* Añadir espacio a la sección de bienvenida */
         #home {
             background-color: #191919;
             color: white;
@@ -57,7 +51,6 @@
             align-items: center;
             justify-content: center;
         }
-        /* Centrar el texto en la barra de navegación */
         .navbar {
             background-color: white;
         }
@@ -68,19 +61,16 @@
         .navbar-toggler {
             margin-left: auto;
         }
-        /* Estilos para la fuente Helvetica Neue Bold */
         .font-bold {
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-weight: bold;
             transform: scaleX(1.06);
         }
-        /* Estilo para el subtítulo */
         .subtitle {
             font-size: 1rem;
             text-transform: lowercase;
             color: gray;
         }
-        /* Estilo del modal para que solo muestre la imagen */
         .modal-content {
             border: none;
             background: transparent;
@@ -91,6 +81,19 @@
         #modalImage {
             width: 100%;
             height: auto;
+        }
+        .hidden {
+            display: none;
+        }
+
+        /* Ocultar el botón "Ocultar Imágenes" al cargar la página */
+        #hideButton {
+            display: none;
+        }
+
+        /* Ocultar el botón "Ver Más" inicialmente */
+        #toggleButton {
+            display: none;
         }
     </style>
 </head>
@@ -211,15 +214,48 @@
         <img src="images/DSC_0965.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 17" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_0965.jpg')">
     </div>
 </div>
-    
+
+    <!-- Nuevo subtítulo adicional -->
+<h4 class="text-center mb-4 subtitle">MARCHA 2N</h4>
+
+<!-- Septima fila de tres imágenes -->
+<div class="row mb-4">
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1358 low.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 18" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1358 low.jpg')">
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1378 low.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 19" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1378 low.jpg')">
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1400 low.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 20" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1400 low.jpg')">
+    </div>
+</div>
+
+<!-- Octava fila de tres imágenes -->
+<div class="row mb-4">
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1430 low.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 18" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1430 low.jpg')">
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1460 low.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 19" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1460 low.jpg')">
+    </div>
+    <div class="col-lg-4 col-md-6 mb-4">
+        <img src="images/DSC_1470 low.jpg" class="img-fluid rounded portfolio-image" alt="Imagen 20" data-bs-toggle="modal" data-bs-target="#imageModal" onclick="showImage('images/DSC_1470 low.jpg')">
+    </div>
+</div>
 </section>
 
-<!-- Modal para mostrar imágenes -->
+<!-- Botón para ocultar la galería -->
+<div class="text-center">
+    <button class="btn btn-banner" id="hideButton" onclick="toggleGallery()">Ocultar Imágenes</button>
+</div>
+
+<!-- Modal para ver imágenes -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-body">
-                <img id="modalImage" src="" alt="Imagen ampliada">
+                <img id="modalImage" src="" alt="Imagen Modal">
             </div>
         </div>
     </div>
@@ -227,64 +263,68 @@
 
 <!-- Sección "Sobre Mí" -->
 <section id="about" class="container mt-5" style="padding-bottom: 100px;">
-    <h2 class="text-center mb-4 font-bold">Sobre Mí</h2>
-    <p>Estudiante de Diseño de Imagen y sonido.<br>
-    UBA - Facultad de Arquitectura, diseño y urbanismo ( FADU )<br>
-    Fotografía, Diseño y Edición de contenido Audiovisual.<br>
-    Argentina, Buenos Aires, GBA.</p>
+<h2 class="text-center mb-4 font-bold">Sobre Mí</h2>
+<p>Estudiante de Diseño de Imagen y sonido.<br> UBA - Facultad de Arquitectura, diseño y urbanismo ( FADU )<br> Fotografía, Diseño y Edición de contenido Audiovisual.<br> Argentina, Buenos Aires, GBA.</p>
 </section>
 
 <!-- Sección "Contacto" -->
 <section id="contact" class="container mt-5" style="padding-bottom: 40px;">
     <h2 class="text-center mb-4 font-bold">Contacto</h2>
     <form class="text-center">
-    <div class="row">
-        <div class="col-md-6 text-start">
-            <p>
-                <a href="https://www.instagram.com/mxs.dis?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer">
-                    Instagram : @mxs.dis
-                </a>
-            </p>
+        <div class="row">
+            <div class="col-md-6 text-start">
+                <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold;"><p><a href="https://www.instagram.com/mxs.dis" target="_blank">Instagram: @mxs.dis</a></p>
+            </div>
+            <div class="col-md-6 text-end">
+                <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold;">Gmail: Maxigottlieb3@gmail.com</p>
+            </div>
         </div>
-        <div class="col-md-6 text-end">
-            <p>email :  maxigottlieb3@gmail.com</p>
-        </div>
-    </div>
+    </form>
 </section>
+
 
 <!-- Scripts de Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 <script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // Mostrar u ocultar la galería y el botón
+    function toggleGallery() {
+        const portfolioSection = document.getElementById('portfolio');
+        const toggleButton = document.getElementById('toggleButton');
+        const hideButton = document.getElementById('hideButton');
+
+        if (portfolioSection.style.display === "none" || portfolioSection.style.opacity === "0") {
+            portfolioSection.style.display = "block";
+            portfolioSection.style.opacity = "1";
+            portfolioSection.style.maxHeight = portfolioSection.scrollHeight + "px";
+            toggleButton.style.display = "none";  // Ocultar el botón "Ver Más"
+            hideButton.style.display = "inline-block";  // Mostrar el botón "Ocultar Imágenes"
+        } else {
+            portfolioSection.style.opacity = "0";
+            portfolioSection.style.maxHeight = "0";
+            setTimeout(() => {
+                portfolioSection.style.display = "none";
+            }, 500);  // Espera a que la transición termine antes de ocultar completamente la sección
+            hideButton.style.display = "none";  // Ocultar el botón "Ocultar Imágenes"
+            toggleButton.style.display = "inline-block";  // Mostrar el botón "Ver Más"
+        }
+    }
+
     // Función para mostrar la imagen en el modal
     function showImage(imageSrc) {
         const modalImage = document.getElementById('modalImage');
         modalImage.src = imageSrc;
     }
 
-    // Función para alternar la galería
-    function toggleGallery() {
-        const portfolio = document.getElementById('portfolio');
+    // Mostrar el botón "Ver Más" al cargar la página
+    document.addEventListener("DOMContentLoaded", function() {
         const toggleButton = document.getElementById('toggleButton');
-        
-        const isVisible = portfolio.style.display === "block";
-        
-        if (isVisible) {
-            portfolio.style.maxHeight = "0"; // Colapsar
-            portfolio.style.opacity = 0;
-            setTimeout(() => {
-                portfolio.style.display = "none";
-                toggleButton.textContent = "Ver Más";
-            }, 500);
-        } else {
-            portfolio.style.display = "block"; // Mostrar
-            setTimeout(() => {
-                portfolio.style.maxHeight = portfolio.scrollHeight + "px"; // Expandir
-                portfolio.style.opacity = 1;
-                toggleButton.textContent = "Ver Menos";
-            }, 10);
-        }
-    }
+        toggleButton.style.display = "inline-block";
+    });
 </script>
+
 </body>
 </html>
