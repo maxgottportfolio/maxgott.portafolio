@@ -108,12 +108,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#about">Sobre Mí</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark" href="#contact">Contacto</a>
-                </li>
             </ul>
         </div>
     </div>
@@ -133,6 +127,33 @@
     <h1 class="font-bold">Explora mi Galería</h1>
     <p><button class="btn btn-light" id="toggleButton" onclick="toggleGallery()">Ver Más</button></p>
 </section>
+
+<!-- Nuevo Banner de Portfolio Audiovisual -->
+<section id="audiovisualBanner">
+    <h1 class="font-bold">Portfolio Audiovisual</h1>
+    <p><a href="https://vimeo.com/user230479702" target="_blank" class="btn btn-light">Ver Más</a></p>
+</section>
+
+<style>
+    #audiovisualBanner {
+        position: relative;
+        overflow: hidden;
+        color: white;
+        padding: 50px 0;
+        text-align: center;
+        transition: filter 0.5s;
+        background-image: url('images/BLUE.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+    #audiovisualBanner h1, #audiovisualBanner a {
+        position: relative;
+        z-index: 1;
+    }
+    #audiovisualBanner a:hover {
+        background-color: #ddd; /* Color del botón al pasar el cursor */
+    }
+</style>
 
 <!-- Galería de Imágenes -->
 <section id="portfolio" class="container mt-5">
@@ -246,8 +267,8 @@
 </section>
 
 <!-- Botón para ocultar la galería -->
-<div class="text-center">
-    <button class="btn btn-banner" id="hideButton" onclick="toggleGallery()">Ocultar Imágenes</button>
+<div class="text-center mt-3">
+    <button class="btn btn-dark text-white" id="hideButton" onclick="toggleGallery()" style="display: none;">Ocultar</button>
 </div>
 
 <!-- Modal para ver imágenes -->
@@ -261,31 +282,27 @@
     </div>
 </div>
 
-<!-- Sección "Sobre Mí" -->
-<section id="about" class="container mt-5" style="padding-bottom: 100px;">
-<h2 class="text-center mb-4 font-bold">Sobre Mí</h2>
-<p>Estudiante de Diseño de Imagen y sonido.<br> UBA - Facultad de Arquitectura, diseño y urbanismo ( FADU )<br> Fotografía, Diseño y Edición de contenido Audiovisual.<br> Argentina, Buenos Aires, GBA.</p>
-    <!-- Enlace al Portfolio audiovisual -->
-    <p class="text-start">
-        <a href="https://vimeo.com/user230479702" target="_blank" class="font-bold">Portfolio audiovisual</a>
-     </p>
- </section>
-
-<!-- Sección "Contacto" -->
-<section id="contact" class="container mt-5" style="padding-bottom: 40px;">
-    <h2 class="text-center mb-4 font-bold">Contacto</h2>
-    <form class="text-center">
-        <div class="row">
-            <div class="col-md-6 text-start">
-                <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold;"><p><a href="https://www.instagram.com/mxs.dis" target="_blank">Instagram: @mxs.dis</a></p>
-            </div>
-            <div class="col-md-6 text-end">
-                <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold;">Gmail: Maxigottlieb3@gmail.com</p>
-            </div>
+<!-- Sección "Sobre Mí" y "Contacto" en una misma fila -->
+<div class="container mt-5" style="padding-bottom: 100px;">
+    <div class="row">
+        <!-- Título "Sobre Mí" alineado a la izquierda -->
+        <div class="col-md-6 text-start">
+            <h2 class="mb-4 font-bold">Sobre Mí</h2>
+            <p>Estudiante de Diseño de Imagen y sonido.<br>
+                UBA - Facultad de Arquitectura, diseño y urbanismo (FADU)<br>
+                Fotografía, Diseño y Edición de contenido Audiovisual.<br>
+                Argentina, Buenos Aires, GBA.
+            </p>
         </div>
-    </form>
-</section>
 
+        <!-- Título "Contacto" alineado a la derecha -->
+        <div class="col-md-6 text-end">
+            <h2 class="mb-4 font-bold">Contacto</h2>
+            <p><a href="https://www.instagram.com/mxs.dis" target="_blank">Instagram: @mxs.dis</a></p>
+            <p>Email: Maxigottlieb3@gmail.com</p>
+        </div>
+    </div>
+</div>
 
 <!-- Scripts de Bootstrap -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -298,13 +315,12 @@
     function toggleGallery() {
         const portfolioSection = document.getElementById('portfolio');
         const toggleButton = document.getElementById('toggleButton');
-        const hideButton = document.getElementById('hideButton');
 
         if (portfolioSection.style.display === "none" || portfolioSection.style.opacity === "0") {
             portfolioSection.style.display = "block";
             portfolioSection.style.opacity = "1";
             portfolioSection.style.maxHeight = portfolioSection.scrollHeight + "px";
-            toggleButton.style.display = "none";  // Ocultar el botón "Ver Más"
+            toggleButton.style.display = "none";  // Ocultar el botón "Ver Más" después de un clic
             hideButton.style.display = "inline-block";  // Mostrar el botón "Ocultar Imágenes"
         } else {
             portfolioSection.style.opacity = "0";
@@ -327,6 +343,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         const toggleButton = document.getElementById('toggleButton');
         toggleButton.style.display = "inline-block";
+        document.getElementById('portfolio').style.display = "none"; // Ocultar la galería al inicio
     });
 </script>
 
