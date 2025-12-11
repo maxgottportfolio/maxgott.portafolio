@@ -18,7 +18,6 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <link rel="preload" as="image" href="images/SANCTUARY X_1.jpg">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -194,17 +193,6 @@
             filter: grayscale(0%);
         }
 
-        @media (max-width: 768px) {
-            .variable-height-container {
-                height: auto;
-                width: 100%;
-            }
-            .variable-height-container img {
-                width: 100%;
-                height: auto;
-            }
-        }
-
         /* --- ESTILOS PARA EL BOTÓN DE PLAY (VIDEO) --- */
         .video-overlay {
             position: absolute;
@@ -287,6 +275,27 @@
         @keyframes fadeUp {
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* --- MEDIA QUERIES (OPTIMIZACIÓN MÓVIL) --- */
+        @media (max-width: 768px) {
+            h1.title-display { font-size: 2.2rem; }
+            h2.title-display { font-size: 1.8rem; margin-bottom: 0.5rem; }
+            
+            /* Ajuste de contenedores para apilarse verticalmente en móvil */
+            .variable-height-container {
+                height: auto !important; /* Altura automática */
+                width: 100% !important;  /* Ancho completo */
+            }
+            
+            .variable-height-container img {
+                width: 100% !important;
+                height: auto !important;
+            }
+
+            /* Reducir márgenes excesivos en móvil */
+            .mb-5 { margin-bottom: 2rem !important; }
+            .section-clean { padding: 40px 0; }
+        }
     </style>
 </head>
 <body>
@@ -326,24 +335,21 @@
                 Dirección de fotografía – Cámara - Corrección de color
             </div>
             
-            <div class="d-flex justify-content-start">
+            <div class="d-flex flex-column flex-md-row align-items-start">
                 
-                <div style="width: min-content;"> 
-                    
-                    <div class="variable-width-row mb-3">
-                        <a href="https://vimeo.com/1143302016?share=copy&fl=sv&fe=ci" target="_blank" class="text-decoration-none" aria-label="Ver documental Sueños">
-                            <div class="variable-height-container">
-                                <div class="video-overlay">
-                                    <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                                </div>
-                                <img src="images/thumbnail3.jpg" alt="Sueños Video" loading="lazy">
+                <div class="variable-width-row mb-3 me-md-4">
+                    <a href="https://vimeo.com/1143302016?share=copy&fl=sv&fe=ci" target="_blank" class="text-decoration-none" aria-label="Ver documental Sueños">
+                        <div class="variable-height-container">
+                            <div class="video-overlay">
+                                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                             </div>
-                        </a>
-                    </div>
+                            <img src="images/thumbnail3.jpg" alt="Sueños Video" loading="lazy">
+                        </div>
+                    </a>
+                </div>
 
-                    <div style="font-size: 15px; line-height: 1.6; color: #555; text-align: left;">
-                        Un documental realizado en Capilla del señor en donde se registraron fragmentos de la vida de León, un niño que comparte las tardes junto a su prima en la hostelería de su abuela. Un ensayo en donde León abre las puertas a su imaginación y nos comenta cuáles son sus sueños…
-                    </div>
+                <div style="font-size: 15px; line-height: 1.6; color: #555; max-width: 500px;">
+                    Un documental realizado en Capilla del señor en donde se registraron fragmentos de la vida de León, un niño que comparte las tardes junto a su prima en la hostelería de su abuela. Un ensayo en donde León abre las puertas a su imaginación y nos comenta cuáles son sus sueños…
                 </div>
 
             </div>
@@ -367,7 +373,7 @@
             
             <div class="project-subtitle">
                 Fashion film “Forced Labor” (2025)<br>
-                Dirección de fotografía – Diseñador sonoro – Montaje
+                Dirección de fotografía – Diseño sonoro – Montaje
             </div>
 
             <div class="variable-width-row mb-4">
@@ -387,7 +393,7 @@
 
             <div style="font-size: 15px; line-height: 1.6; color: #555;">
                 Prototipo realizado para la catedra Fiorini - FADU<br>
-                Realizadoras: &nbsp;Julieta Lohigorry ( @jule2s) y Lucia Gómez ( @lulaaagomez )<br>
+                Realizadoras: &nbsp;Julieta Lohigorry (@jule2s) y Lucia Gómez (@lulaaagomez)<br>
                 Agradecimientos a&nbsp; @amachiesa_ &nbsp;&nbsp;@_fxiara
             </div> 
         </div>
@@ -396,7 +402,7 @@
             <h2 class="title-display">Coral</h2>
             <div class="project-subtitle">
                 Fashion film "Coral" (2025)<br>
-                Dirección de fotografía – Diseñador sonoro – Montaje
+                Dirección de fotografía – Diseño sonoro – Montaje
             </div>
             
             <div class="variable-width-row">
@@ -416,7 +422,7 @@
 
             <div class="mt-4" style="font-size: 15px; line-height: 1.6; color: #555;">
                 Prototipo realizado para la catedra Fiorini - FADU<br>
-                Realizadoras: &nbsp;Julieta Lohigorry ( @jule2s), Lucia Gómez ( @lulaaagomez ) y Camila Guerra (@ccamiguerrra )<br>
+                Realizadoras: &nbsp;Julieta Lohigorry (@jule2s), Lucia Gómez (@lulaaagomez) y Camila Guerra (@ccamiguerrra)<br>
                 Agradecimientos a&nbsp; @aguspfrommer
             </div> 
         </div>
@@ -425,14 +431,14 @@
             <div class="row g-5">
                 
                 <div class="col-md-6">
-                    <h2 class="title-display">Stagephoto</h2>
+                    <h2 class="title-display">Stagephoto</h2> 
                     <div class="variable-width-row">
                         <div class="variable-height-container">
                             <img src="images/PROP-HIGH-3.jpg" class="gallery-img" alt="Stage Photo" loading="lazy">
                         </div>
                     </div>
                     <div class="mt-2" style="font-size: 15px; line-height: 1.6; color: #555;">
-                        Modelo Federico Lepez ( @fede_lepez )
+                        Agradecimientos a Federico Lepez (@fede_lepez)
                     </div>
                 </div>
 
@@ -444,7 +450,7 @@
                         </div>
                     </div>
                     <div class="mt-2" style="font-size: 15px; line-height: 1.6; color: #555;">
-                        Modelo Pedro Palacios Kap ( @pedrop.kap )
+                        Agradecimientos a Pedro Palacios Kap (@pedrop.kap)
                     </div>
                 </div>
 
